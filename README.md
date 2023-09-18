@@ -1,4 +1,4 @@
 # RainbowCare
 
 
-![Frame 1](https://github.com/Joanna-Victoria/RainbowCare/assets/78940661/b80aec7c-9504-4f48-8499-c800af84c500)
+![Group 4](https://github.com/Joanna-Victoria/RainbowCare/assets/78940661/584edd81-86d5-4da9-b094-b034189d8db4)
