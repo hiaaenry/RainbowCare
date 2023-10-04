@@ -11,11 +11,24 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String         @id @default(uuid())
   name          String
-  email         String   @unique
+  email         String         @unique
   password_hash String
-  created_at    DateTime @default(now())
+  created_at    DateTime       @default(now())
+  Notification  Notification[]
 
   @@map("users")
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  title      String
+  content    String
+  created_at DateTime @default(now())
+
+  recipient       User   @relation(fields: [recipient_email], references: [email])
+  recipient_email String
+
+  @@map("notifications")
 }
