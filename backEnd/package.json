@@ -27,9 +27,11 @@
   },
   "dependencies": {
     "@prisma/client": "^5.3.0",
+    "@types/nodemailer": "^6.4.11",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "fastify": "^4.23.2",
+    "nodemailer": "^6.9.5",
     "zod": "^3.22.2"
   }
 }
