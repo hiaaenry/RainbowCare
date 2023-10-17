@@ -1,5 +1,6 @@
 import { UserAlreadyExistsError } from "@/services/errors/users_already_exists_error";
 import { makeRegisterService } from "@/services/factories/make_register_service";
+import { Role } from "@prisma/client";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
@@ -8,9 +9,12 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     name: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
+    role: z.enum(["USER", "ADMIN"]),
   });
 
-  const { name, email, password } = registerBodySchema.parse(request.body);
+  const { name, email, password, role } = registerBodySchema.parse(
+    request.body
+  );
 
   try {
     const registerService = makeRegisterService();
@@ -19,6 +23,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       name,
       email,
       password,
+      role,
     });
   } catch (error) {
     if (error instanceof UserAlreadyExistsError) {

@@ -17,6 +17,7 @@ model User {
   password_hash String
   created_at    DateTime       @default(now())
   Notification  Notification[]
+  role          Role           @default(USER)
 
   @@map("users")
 }
@@ -31,4 +32,9 @@ model Notification {
   recipient_email String
 
   @@map("notifications")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
