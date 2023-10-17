@@ -69,3 +69,52 @@ export const swaggerRegisterRoute = {
     },
   },
 };
+
+export const swaggerSessionRoute = {
+  schema: {
+    description: "authenticate user",
+    tags: ["user"],
+    body: {
+      type: "object",
+      properties: {
+        email: { type: "string", format: "email" },
+        password: { type: "string", format: "password" },
+      },
+      examples: [
+        {
+          email: "user.email@example.com",
+          password: "password",
+        },
+      ],
+    },
+    response: {
+      200: {
+        description: "OK",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+};
