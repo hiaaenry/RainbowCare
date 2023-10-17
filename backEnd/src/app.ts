@@ -3,7 +3,14 @@ import { appRoutes } from "./http/routes";
 import { ZodError } from "zod";
 import { env } from "./env";
 
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
+import { swaggerOptions, swaggerUiOptions } from "./swagger";
+
 export const app = fastity();
+
+app.register(fastifySwagger, swaggerOptions);
+app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(appRoutes);
 
