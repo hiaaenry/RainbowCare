@@ -118,3 +118,63 @@ export const swaggerSessionRoute = {
     },
   },
 };
+
+export const swaggerSendNotificationRoute = {
+  schema: {
+    description: "send notification",
+    tags: ["notification"],
+    body: {
+      type: "object",
+      properties: {
+        recipientEmail: { type: "string", format: "email" },
+        title: { type: "string" },
+        content: { type: "string" },
+      },
+      examples: [
+        {
+          recipientEmail: "user.email@example.com",
+          title: "notification title",
+          content: "notification title",
+        },
+      ],
+    },
+    response: {
+      201: {
+        description: "CREATED",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      404: {
+        description: "NOT_FOUND",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+};
