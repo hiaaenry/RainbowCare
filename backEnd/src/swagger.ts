@@ -29,6 +29,9 @@ export const swaggerRegisterRoute = {
         name: { type: "string" },
         email: { type: "string", format: "email" },
         password: { type: "string", format: "password" },
+        role: {
+          enum: ["USER", "ADMIN"],
+        },
       },
       examples: [
         {
