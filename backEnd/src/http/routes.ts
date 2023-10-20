@@ -9,6 +9,8 @@ import {
   middlewareSendNotificationRoute,
   middlewareSessionRoute,
 } from "./middlewares/middleware";
+import { profile } from "./controllers/profile";
+import { verifyJWT } from "./middlewares/verifyJWT";
 
 export async function appRoutes(app: FastifyInstance) {
   app.post("/users", middlewareRegisterRoute, register);
@@ -19,4 +21,5 @@ export async function appRoutes(app: FastifyInstance) {
     sendNotification
   );
   app.post("/users/foster-home", middlewareFosterHomeRoute, create);
+  app.get("/users/me", { onRequest: [verifyJWT] }, profile);
 }
