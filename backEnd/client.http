@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.token}}
+
+# @name create_account
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "name": "Eman Resu",
+    "email": "eman.resu@example.com",
+    "password": "123456",
+    "role": "USER"
+}
+
+###
+
+# @name authenticate
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+    "email": "eman.resu@example.com",
+    "password": "123456"
+}
+
+###
+
+# @name create_foster_home
+POST {{baseUrl}}/users/foster-home
+Content-Type: application/json
+Authorization: Bearer {{authToken}} 
+
+{
+    "name": "Wen Retsof Emoh"
+}
