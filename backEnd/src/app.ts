@@ -6,6 +6,7 @@ import { env } from "./env";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import { swaggerOptions, swaggerUiOptions } from "./swagger";
+import fastifyJwt from "@fastify/jwt";
 
 export const app = fastity();
 
@@ -13,6 +14,10 @@ app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(appRoutes);
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRETS,
+});
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
