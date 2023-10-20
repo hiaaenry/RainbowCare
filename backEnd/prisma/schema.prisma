@@ -22,6 +22,14 @@ model User {
   @@map("users")
 }
 
+model FosterHome {
+  id         String   @id @default(uuid())
+  name       String
+  created_at DateTime @default(now())
+
+  @@map("foster_home")
+}
+
 model Notification {
   id         String   @id @default(uuid())
   title      String

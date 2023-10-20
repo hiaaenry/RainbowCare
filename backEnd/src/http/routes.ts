@@ -2,18 +2,21 @@ import { FastifyInstance } from "fastify";
 import { register } from "./controllers/register";
 import { authenticate } from "./controllers/authenticate";
 import { sendNotification } from "./controllers/notification";
+import { create } from "./controllers/foster_home";
 import {
-  swaggerRegisterRoute,
-  swaggerSendNotificationRoute,
-  swaggerSessionRoute,
-} from "@/swagger";
+  middlewareFosterHomeRoute,
+  middlewareRegisterRoute,
+  middlewareSendNotificationRoute,
+  middlewareSessionRoute,
+} from "./middlewares/middleware";
 
 export async function appRoutes(app: FastifyInstance) {
-  app.post("/users", swaggerRegisterRoute, register);
-  app.post("/sessions", swaggerSessionRoute, authenticate);
+  app.post("/users", middlewareRegisterRoute, register);
+  app.post("/sessions", middlewareSessionRoute, authenticate);
   app.post(
     "/send-notification",
-    swaggerSendNotificationRoute,
+    middlewareSendNotificationRoute,
     sendNotification
   );
+  app.post("/users/foster-home", middlewareFosterHomeRoute, create);
 }
