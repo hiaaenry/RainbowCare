@@ -8,10 +8,12 @@ import { register } from "./register";
 import { authenticate } from "./authenticate";
 import { profile } from "./profile";
 import { edit } from "./edit";
+import { remove } from "./delete";
 
 export async function userRouter(app: FastifyInstance) {
   app.post("/users", middlewareRegisterRoute, register);
   app.post("/sessions", middlewareSessionRoute, authenticate);
   app.get("/users/me", { onRequest: [verifyJWT] }, profile);
   app.put("/users/edit/:userId", edit);
+  app.delete("/users/delete/:userId", remove);
 }
