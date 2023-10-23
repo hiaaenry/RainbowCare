@@ -7,7 +7,7 @@ import { verifyJWT } from "@/http/middlewares/verifyJWT";
 import { register } from "./register";
 import { authenticate } from "./authenticate";
 import { profile } from "./profile";
-import { edit } from "./edit_profile";
+import { edit } from "./edit";
 
 export async function userRouter(app: FastifyInstance) {
   app.post("/users", middlewareRegisterRoute, register);
