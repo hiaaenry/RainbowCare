@@ -1,4 +1,4 @@
-import { Prisma, Role, User } from "@prisma/client";
+import { $Enums, Prisma, Role, User } from "@prisma/client";
 import { UsersRepository } from "../users_repository";
 
 export class InMemoryUsersRepository implements UsersRepository {
@@ -36,5 +36,15 @@ export class InMemoryUsersRepository implements UsersRepository {
     this.items.push(user);
 
     return user;
+  }
+
+  async save(data: User) {
+    const userIndex = this.items.findIndex((item) => item.id === data.id);
+
+    if (userIndex >= 0) {
+      this.items[userIndex] = data;
+    }
+
+    return data;
   }
 }
