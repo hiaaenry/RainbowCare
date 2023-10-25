@@ -13,6 +13,20 @@ export class PrismaFosterHomeRepository implements FosterHomeRepository {
     return fosterHome;
   }
 
+  async searchMany(query: string, page: number) {
+    const fosterHomes = await prisma.fosterHome.findMany({
+      where: {
+        name: {
+          contains: query,
+        },
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    });
+
+    return fosterHomes;
+  }
+
   async create(data: Prisma.FosterHomeCreateInput) {
     const fosterHome = await prisma.fosterHome.create({
       data,
