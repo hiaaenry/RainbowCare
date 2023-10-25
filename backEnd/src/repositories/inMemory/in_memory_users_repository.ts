@@ -47,4 +47,14 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     return data;
   }
+
+  async deleteUserById(data: User) {
+    const userIndex = this.items.findIndex((item) => item.id === data.id);
+
+    if (userIndex >= 0) {
+      delete this.items[userIndex];
+    }
+
+    return this.items[userIndex];
+  }
 }
