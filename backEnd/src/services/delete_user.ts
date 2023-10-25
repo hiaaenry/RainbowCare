@@ -19,8 +19,8 @@ export class DeleteUserProfileService {
       throw new ResourceNotFoundError();
     }
 
-    await this.usersRepository.delete(user);
+    const deleteUser = await this.usersRepository.deleteUserById(user);
 
-    return {};
+    return { deleteUser };
   }
 }
