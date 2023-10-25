@@ -14,6 +14,12 @@ export class InMemoryFosterHomeRepository implements FosterHomeRepository {
     return fosterHome;
   }
 
+  async searchMany(query: string, page: number) {
+    return this.items
+      .filter((item) => item.name.includes(query))
+      .slice((page - 1) * 20, page * 20);
+  }
+
   async create(data: Prisma.FosterHomeCreateInput) {
     const fosterHome = {
       id: "foster-home-id-1",
