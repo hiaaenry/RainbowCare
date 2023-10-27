@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAndAuthenticateUser } from "@/utils/test/create_and_authenticate_user";
 import { prisma } from "@/lib/prisma";
 
-describe("Profile Controller (e2e)", () => {
+describe("Edit Profile Controller (e2e)", () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -13,7 +13,7 @@ describe("Profile Controller (e2e)", () => {
     await app.close();
   });
 
-  it("should be able to get user profile", async () => {
+  it("should be able to edit user profile", async () => {
     const { token } = await createAndAuthenticateUser(app);
 
     const user = await prisma.user.findFirstOrThrow();
