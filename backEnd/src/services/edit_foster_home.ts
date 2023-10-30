@@ -4,7 +4,6 @@ import { UsersRepository } from "@/repositories/users_repository";
 import { FosterHome } from "@prisma/client";
 
 interface EditFosterHomeServiceRequest {
-  userId: string;
   fosterHomeId: string;
   name: string;
 }
@@ -14,22 +13,12 @@ interface EditFosterHomeServiceResponse {
 }
 
 export class EditFosterHomeService {
-  constructor(
-    private usersRepository: UsersRepository,
-    private fosterHomeRepository: FosterHomeRepository
-  ) {}
+  constructor(private fosterHomeRepository: FosterHomeRepository) {}
 
   async execute({
-    userId,
     fosterHomeId,
     name,
   }: EditFosterHomeServiceRequest): Promise<EditFosterHomeServiceResponse> {
-    const user = await this.usersRepository.findById(userId);
-
-    if (!user) {
-      throw new ResourceNotFoundError();
-    }
-
     const fosterHome = await this.fosterHomeRepository.findById(fosterHomeId);
 
     if (!fosterHome) {

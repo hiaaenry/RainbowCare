@@ -4,22 +4,17 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 export async function edit(request: FastifyRequest, reply: FastifyReply) {
-  const editFosterHomeParamsSchema = z.object({
-    userId: z.string().uuid(),
-  });
   const editFosterHomeBodySchema = z.object({
     fosterHomeId: z.string(),
     name: z.string(),
   });
 
-  const { userId } = editFosterHomeParamsSchema.parse(request.params);
   const { name, fosterHomeId } = editFosterHomeBodySchema.parse(request.body);
 
   try {
     const editFosterHomeService = makeEditFosterHomeService();
 
     await editFosterHomeService.execute({
-      userId,
       fosterHomeId,
       name,
     });

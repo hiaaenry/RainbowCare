@@ -1,7 +1,7 @@
 import request from "supertest";
 import { FastifyInstance } from "fastify";
 
-export async function createAndAuthenticateUser(app: FastifyInstance) {
+export async function createFosterHome(app: FastifyInstance) {
   await request(app.server).post("/users").send({
     name: "Test Name",
     email: "test.email@example.com",
@@ -16,7 +16,16 @@ export async function createAndAuthenticateUser(app: FastifyInstance) {
 
   const { token } = authResponse.body;
 
+  const createFosterHome = await request(app.server)
+    .post("/foster-home")
+    .set("Authorization", `Bearer ${token}`)
+    .send({
+      name: "Foster Home Test Name",
+    });
+
+  const { fosterHome } = createFosterHome.body;
+
   return {
-    token,
+    fosterHome,
   };
 }
