@@ -2,7 +2,6 @@ import request from "supertest";
 import { app } from "@/app";
 import { createFosterHome } from "@/utils/test/create_foster_home";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { createAndAuthenticateUser } from "@/utils/test/create_and_authenticate_user";
 
 describe("Search Foster Home Controller (e2e)", () => {
   beforeAll(async () => {
@@ -14,7 +13,6 @@ describe("Search Foster Home Controller (e2e)", () => {
   });
 
   it("should be able to search foster home", async () => {
-    const { token } = await createAndAuthenticateUser(app);
     await createFosterHome(app);
 
     const result = await request(app.server)

@@ -1,5 +1,3 @@
-import { verifyJWT } from "./http/middlewares/verifyJWT";
-
 export const swaggerOptions = {
   swagger: {
     info: {

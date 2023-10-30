@@ -1,6 +1,5 @@
 import { FosterHomeRepository } from "@/repositories/foster_home_repository";
 import { ResourceNotFoundError } from "./errors/resource_not_found_error";
-import { UsersRepository } from "@/repositories/users_repository";
 import { FosterHome } from "@prisma/client";
 
 interface EditFosterHomeServiceRequest {

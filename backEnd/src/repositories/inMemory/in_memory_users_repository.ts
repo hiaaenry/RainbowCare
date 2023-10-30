@@ -1,4 +1,4 @@
-import { $Enums, Prisma, Role, User } from "@prisma/client";
+import { Prisma, Role, User } from "@prisma/client";
 import { UsersRepository } from "../users_repository";
 
 export class InMemoryUsersRepository implements UsersRepository {

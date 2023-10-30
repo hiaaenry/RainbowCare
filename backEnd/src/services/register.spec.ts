@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { RegisterService } from "./register";
-import { PrismaUsersRepository } from "@/repositories/prisma/prisma_users_repository";
 import { compare } from "bcryptjs";
 import { InMemoryUsersRepository } from "@/repositories/inMemory/in_memory_users_repository";
 import { UserAlreadyExistsError } from "./errors/users_already_exists_error";
