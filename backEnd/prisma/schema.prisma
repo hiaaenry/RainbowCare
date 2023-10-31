@@ -11,13 +11,14 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  name          String
-  email         String         @unique
-  password_hash String
-  created_at    DateTime       @default(now())
-  Notification  Notification[]
-  role          Role           @default(USER)
+  id              String         @id @default(uuid())
+  name            String
+  email           String         @unique
+  password_hash   String
+  created_at      DateTime       @default(now())
+  Notification    Notification[]
+  role            Role           @default(USER)
+  interested_tags Tag[]
 
   @@map("users")
 }
