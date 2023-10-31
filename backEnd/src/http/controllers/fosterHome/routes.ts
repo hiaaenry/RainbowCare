@@ -1,12 +1,15 @@
-import { middlewareFosterHomeRoute } from "@/http/middlewares/middleware";
+import {
+  middlewareCreateFosterHomeRoute,
+  middlewareEditFosterHomeRoute,
+  middlewareSearchFosterHomeRoute,
+} from "@/http/middlewares/middleware";
 import { FastifyInstance } from "fastify";
 import { create } from "./create";
 import { search } from "./search";
 import { edit } from "./edit";
-import { verifyJWT } from "@/http/middlewares/verifyJWT";
 
 export async function fosterHomeRouter(app: FastifyInstance) {
-  app.post("/foster-home", middlewareFosterHomeRoute, create);
-  app.put("/foster-home", { onRequest: [verifyJWT] }, edit);
-  app.get("/foster-home", search);
+  app.post("/foster-home", middlewareCreateFosterHomeRoute, create);
+  app.put("/foster-home", middlewareEditFosterHomeRoute, edit);
+  app.get("/foster-home", middlewareSearchFosterHomeRoute, search);
 }

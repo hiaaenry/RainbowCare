@@ -103,6 +103,132 @@ export const middlewareSessionRoute = {
   },
 };
 
+export const middlewareGetUserProfile = {
+  schema: {
+    description: "get user profile",
+    tags: ["user"],
+    parameters: [],
+    response: {
+      200: {
+        description: "OK",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  onRequest: [verifyJWT],
+};
+
+export const middlewareDeleteUser = {
+  schema: {
+    description: "delete user profile",
+    tags: ["user"],
+    parameters: [],
+    response: {
+      204: {
+        description: "NO_CONTENT",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  onRequest: [verifyJWT],
+};
+
+export const middlewareEditUserProfile = {
+  schema: {
+    description: "edit user profile",
+    tags: ["user"],
+    body: {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+        email: { type: "string", format: "email" },
+      },
+      examples: [
+        {
+          email: "user.email@example.com",
+          name: "user name",
+        },
+      ],
+    },
+    response: {
+      204: {
+        description: "NO_CONTENT",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  onRequest: [verifyJWT],
+};
+
 export const middlewareSendNotificationRoute = {
   schema: {
     description: "send notification",
@@ -164,6 +290,137 @@ export const middlewareSendNotificationRoute = {
   onRequest: [verifyJWT],
 };
 
-export const middlewareFosterHomeRoute = {
+export const middlewareCreateFosterHomeRoute = {
+  schema: {
+    description: "create foster home",
+    tags: ["foster home"],
+    body: {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+      },
+      examples: [
+        {
+          name: "foster home name",
+        },
+      ],
+    },
+    response: {
+      201: {
+        description: "CREATED",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
   onRequest: [verifyJWT],
+};
+
+export const middlewareEditFosterHomeRoute = {
+  schema: {
+    description: "edit foster home",
+    tags: ["foster home"],
+    body: {
+      type: "object",
+      properties: {
+        fosterHomeId: { type: "string" },
+        name: { type: "string" },
+      },
+      examples: [
+        {
+          fosterHomeId: "03aeb254-04e7-4485-8769-2e94794fd905",
+          name: "foster home name",
+        },
+      ],
+    },
+    response: {
+      204: {
+        description: "NO_CONTENT",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
+  onRequest: [verifyJWT],
+};
+
+export const middlewareSearchFosterHomeRoute = {
+  schema: {
+    description: "search foster home",
+    tags: ["foster home"],
+    parameters: [],
+    response: {
+      200: {
+        description: "OK",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      400: {
+        description: "BAD_REQUEST",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+      500: {
+        description: "INTERNAL SERVER ERROR",
+        type: "object",
+        properties: {
+          message: {
+            type: "object",
+          },
+        },
+      },
+    },
+  },
 };
