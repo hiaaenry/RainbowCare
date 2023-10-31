@@ -12,15 +12,15 @@ describe("Create Foster Home Service", () => {
   beforeEach(async () => {
     fosterHomeRepository = new InMemoryFosterHomeRepository();
     usersRepository = new InMemoryUsersRepository();
-    sut = new CreateFosterHomeService(fosterHomeRepository);
+    sut = new CreateFosterHomeService(usersRepository, fosterHomeRepository);
   });
 
   it("should be able to create foster home", async () => {
     const { fosterHome } = await sut.execute({
       name: "Foster Home Test Name",
       tags: ["JOB"],
+      description: "description",
     });
-    console.log(fosterHome);
 
     expect(fosterHome.id).toEqual(expect.any(String));
   });

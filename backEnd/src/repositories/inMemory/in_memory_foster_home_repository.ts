@@ -26,6 +26,8 @@ export class InMemoryFosterHomeRepository implements FosterHomeRepository {
       name: data.name,
       tags: data.tags as Tag[],
       created_at: new Date(),
+      description: data.description,
+      recipient_email: data.recipient_email as Tag[],
     };
 
     this.items.push(fosterHome);

@@ -8,7 +8,6 @@ import { env } from "./env";
 import { swaggerOptions, swaggerUiOptions } from "./swagger";
 
 import { userRouter } from "./http/controllers/users/routes";
-import { notificationRouter } from "./http/controllers/notification/routes";
 import { fosterHomeRouter } from "./http/controllers/fosterHome/routes";
 
 export const app = fastity();
@@ -17,7 +16,6 @@ app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(userRouter);
-app.register(notificationRouter);
 app.register(fosterHomeRouter);
 
 app.register(fastifyJwt, {

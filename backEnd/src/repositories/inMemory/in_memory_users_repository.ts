@@ -1,8 +1,20 @@
-import { Prisma, Role, Tag, User } from "@prisma/client";
+import { $Enums, Prisma, Role, Tag, User } from "@prisma/client";
 import { UsersRepository } from "../users_repository";
 
 export class InMemoryUsersRepository implements UsersRepository {
   public items: User[] = [];
+
+  async catchEmailfindByTag(tags: $Enums.Tag[]) {
+    const users = this.items.filter((user) =>
+      user.interested_tags.some((tag) => tags.includes(tag))
+    );
+
+    if (users.length > 0) {
+      return users[0].email;
+    }
+
+    return null;
+  }
 
   async findById(id: string) {
     const user = this.items.find((item) => item.id === id);

@@ -1,8 +1,27 @@
 import { prisma } from "@/lib/prisma";
-import { $Enums, Prisma, User } from "@prisma/client";
+import { Prisma, Tag, User } from "@prisma/client";
 import { UsersRepository } from "../users_repository";
 
 export class PrismaUsersRepository implements UsersRepository {
+  async catchEmailfindByTag(tags: Tag[]) {
+    const users = await prisma.user.findMany({
+      where: {
+        interested_tags: {
+          hasSome: tags,
+        } as Prisma.EnumTagNullableListFilter<"User">,
+      },
+      select: {
+        email: true,
+      },
+    });
+
+    if (users.length > 0) {
+      return users[0].email;
+    }
+
+    return null;
+  }
+
   async findById(id: string) {
     const user = await prisma.user.findUnique({
       where: {

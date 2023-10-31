@@ -11,37 +11,26 @@ datasource db {
 }
 
 model User {
-  id              String         @id @default(uuid())
+  id              String   @id @default(uuid())
   name            String
-  email           String         @unique
+  email           String   @unique
   password_hash   String
-  created_at      DateTime       @default(now())
-  Notification    Notification[]
-  role            Role           @default(USER)
+  created_at      DateTime @default(now())
+  role            Role     @default(USER)
   interested_tags Tag[]
 
   @@map("users")
 }
 
 model FosterHome {
-  id         String   @id @default(uuid())
-  name       String
-  created_at DateTime @default(now())
-  tags       Tag[]
+  id              String   @id @default(uuid())
+  name            String
+  created_at      DateTime @default(now())
+  description     String
+  recipient_email String[]
+  tags            Tag[]
 
   @@map("foster_home")
-}
-
-model Notification {
-  id         String   @id @default(uuid())
-  title      String
-  content    String
-  created_at DateTime @default(now())
-
-  recipient       User   @relation(fields: [recipient_email], references: [email])
-  recipient_email String
-
-  @@map("notifications")
 }
 
 enum Role {

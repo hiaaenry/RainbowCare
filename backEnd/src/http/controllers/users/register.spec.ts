@@ -12,12 +12,15 @@ describe("Register Controller (e2e)", () => {
   });
 
   it("should be able to register", async () => {
-    const response = await request(app.server).post("/users").send({
-      name: "Test Name",
-      email: "test.email@example.com",
-      password: "test.password",
-      role: "USER",
-    });
+    const response = await request(app.server)
+      .post("/users")
+      .send({
+        name: "Test Name",
+        email: "test.email@example.com",
+        password: "test.password",
+        role: "USER",
+        interested_tags: ["JOB"],
+      });
 
     expect(response.statusCode).toBe(201);
   });

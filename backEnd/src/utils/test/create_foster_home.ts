@@ -21,6 +21,8 @@ export async function createFosterHome(app: FastifyInstance) {
     .set("Authorization", `Bearer ${token}`)
     .send({
       name: "Foster Home Test Name",
+      tags: ["JOB"],
+      description: "description",
     });
 
   const { fosterHome } = createFosterHome.body;

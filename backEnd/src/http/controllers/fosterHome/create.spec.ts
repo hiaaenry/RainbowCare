@@ -20,6 +20,8 @@ describe("Create Foster Home Controller (e2e)", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({
         name: "Test Foster Home",
+        tags: ["JOB"],
+        description: "description",
       });
 
     expect(response.statusCode).toBe(201);
