@@ -6,19 +6,19 @@ import { z } from "zod";
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   await request.jwtVerify();
 
-  console.log(request.user.sub);
-
   const createFosterFomeBodySchema = z.object({
     name: z.string(),
+    tags: z.enum(["JOB", "BOOTCAMP"]).array(),
   });
 
-  const { name } = createFosterFomeBodySchema.parse(request.body);
+  const { name, tags } = createFosterFomeBodySchema.parse(request.body);
 
   try {
     const createFosterHomeService = makeCreateFosterHomeService();
 
     await createFosterHomeService.execute({
       name,
+      tags,
     });
   } catch (error) {
     if (error instanceof UserAlreadyExistsError) {

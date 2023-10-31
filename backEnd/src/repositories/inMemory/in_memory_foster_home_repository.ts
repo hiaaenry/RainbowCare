@@ -1,4 +1,4 @@
-import { FosterHome, Prisma } from "@prisma/client";
+import { FosterHome, Prisma, Tag } from "@prisma/client";
 import { FosterHomeRepository } from "../foster_home_repository";
 
 export class InMemoryFosterHomeRepository implements FosterHomeRepository {
@@ -24,6 +24,7 @@ export class InMemoryFosterHomeRepository implements FosterHomeRepository {
     const fosterHome = {
       id: "foster-home-id-1",
       name: data.name,
+      tags: data.tags as Tag[],
       created_at: new Date(),
     };
 

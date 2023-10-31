@@ -18,7 +18,9 @@ describe("Create Foster Home Service", () => {
   it("should be able to create foster home", async () => {
     const { fosterHome } = await sut.execute({
       name: "Foster Home Test Name",
+      tags: ["JOB"],
     });
+    console.log(fosterHome);
 
     expect(fosterHome.id).toEqual(expect.any(String));
   });

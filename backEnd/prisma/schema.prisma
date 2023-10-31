@@ -26,6 +26,7 @@ model FosterHome {
   id         String   @id @default(uuid())
   name       String
   created_at DateTime @default(now())
+  tags       Tag[]
 
   @@map("foster_home")
 }
@@ -45,4 +46,9 @@ model Notification {
 enum Role {
   USER
   ADMIN
+}
+
+enum Tag {
+  JOB
+  BOOTCAMP
 }
