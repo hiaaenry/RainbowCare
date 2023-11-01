@@ -20,7 +20,7 @@ describe("Profile Controller (e2e)", () => {
       .set("Authorization", `Bearer ${token}`)
       .send();
 
-    expect(result.statusCode).toBe(200);
+    expect(result.statusCode).toBe(201);
     expect(result.body.user).toEqual(
       expect.objectContaining({
         email: "test.email@example.com",

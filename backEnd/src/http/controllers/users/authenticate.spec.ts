@@ -12,12 +12,15 @@ describe("Authenticate Controller (e2e)", () => {
   });
 
   it("should be able to authenticate", async () => {
-    await request(app.server).post("/users").send({
-      name: "Test Name",
-      email: "test.email@example.com",
-      password: "test.password",
-      role: "USER",
-    });
+    await request(app.server)
+      .post("/users")
+      .send({
+        name: "Test Name",
+        email: "test.email@example.com",
+        password: "test.password",
+        role: "USER",
+        interested_tags: ["JOB"],
+      });
 
     const response = await request(app.server).post("/sessions").send({
       email: "test.email@example.com",

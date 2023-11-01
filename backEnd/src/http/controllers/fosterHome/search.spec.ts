@@ -1,7 +1,8 @@
 import request from "supertest";
 import { app } from "@/app";
-import { createFosterHome } from "@/utils/test/create_foster_home";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { createFosterHome } from "@/utils/test/create_foster_home";
+import { createAndAuthenticateUser } from "@/utils/test/create_and_authenticate_user";
 
 describe("Search Foster Home Controller (e2e)", () => {
   beforeAll(async () => {
@@ -22,7 +23,7 @@ describe("Search Foster Home Controller (e2e)", () => {
       })
       .send();
 
-    expect(result.statusCode).toEqual(200);
+    expect(result.statusCode).toEqual(202);
     expect(result.body.fosterHomes).toHaveLength(1);
     expect(result.body.fosterHomes).toEqual([
       expect.objectContaining({
