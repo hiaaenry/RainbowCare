@@ -25,7 +25,5 @@ describe("Create Foster Home Controller (e2e)", () => {
       });
 
     expect(response.statusCode).toBe(201);
-
-    expect(response.statusCode).toBe(201);
   });
 });

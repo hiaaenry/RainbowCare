@@ -27,4 +27,15 @@ describe("Profile Controller (e2e)", () => {
       })
     );
   });
+
+  it("should not be able to get user profile with non-existent user", async () => {
+    const nonExistentToken = "non-existent.token";
+
+    const result = await request(app.server)
+      .get("/users/me")
+      .set("Authorization", `Bearer ${nonExistentToken}`)
+      .send();
+
+    expect(result.statusCode).toBe(401);
+  });
 });

@@ -3,6 +3,7 @@ import { app } from "@/app";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAndAuthenticateUser } from "@/utils/test/create_and_authenticate_user";
 import { prisma } from "@/lib/prisma";
+import { ResourceNotFoundError } from "@/services/errors/resource_not_found_error";
 
 describe("Edit Profile Controller (e2e)", () => {
   beforeAll(async () => {
@@ -27,5 +28,21 @@ describe("Edit Profile Controller (e2e)", () => {
       });
 
     expect(result.statusCode).toBe(204);
+  });
+
+  it("should not be able to edit profile with incorrect token", async () => {
+    const user = await prisma.user.findFirstOrThrow();
+
+    const nonExistentToken = "non-existent.token";
+
+    const result = await request(app.server)
+      .put(`/users/edit/${user.id}`)
+      .set("Authorization", `Bearer ${nonExistentToken}`)
+      .send({
+        name: "Edit",
+        email: "edit.email@example.com",
+      });
+
+    expect(result.statusCode).toBe(401);
   });
 });
