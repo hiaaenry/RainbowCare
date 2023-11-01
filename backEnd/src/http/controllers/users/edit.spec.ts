@@ -45,4 +45,22 @@ describe("Edit Profile Controller (e2e)", () => {
 
     expect(result.statusCode).toBe(401);
   });
+
+  it("should not be able to edit profile with incorrect user id", async () => {
+    const { token } = await createAndAuthenticateUser(app);
+
+    const nonExistentUserId = "6fca5003-d420-4df5-bcee-7a1fa35e2458";
+
+    const result = await request(app.server)
+      .put(`/users/edit/${nonExistentUserId}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "Edit",
+        email: "edit.email@example.com",
+      });
+
+    console.log(result);
+
+    expect(result.statusCode).toBe(404);
+  });
 });

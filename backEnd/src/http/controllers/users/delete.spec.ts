@@ -25,4 +25,17 @@ describe("Delete User Controller (e2e)", () => {
 
     expect(result.statusCode).toBe(204);
   });
+
+  it("should not be able to delete profile with incorrect user id", async () => {
+    const { token } = await createAndAuthenticateUser(app);
+
+    const nonExistentUserId = "6fca5003-d420-4df5-bcee-7a1fa35e2458";
+
+    const result = await request(app.server)
+      .delete(`/users/delete/${nonExistentUserId}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send();
+
+    expect(result.statusCode).toBe(404);
+  });
 });
