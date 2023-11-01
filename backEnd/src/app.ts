@@ -1,18 +1,29 @@
-import fastity from "fastify";
+import fastify from "fastify";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyJwt from "@fastify/jwt";
 
 import { ZodError } from "zod";
 import { env } from "./env";
-import { swaggerOptions, swaggerUiOptions } from "./swagger";
 
 import { userRouter } from "./http/controllers/users/routes";
 import { fosterHomeRouter } from "./http/controllers/fosterHome/routes";
 
-export const app = fastity();
+export const app = fastify({ logger: true });
 
-app.register(fastifySwagger, swaggerOptions);
+app.register(fastifySwagger, {
+  mode: "static",
+  specification: {
+    path: "src/swagger.json",
+    baseDir: "src/http/controllers/**",
+  },
+});
+
+const swaggerUiOptions = {
+  routePrefix: "/docs",
+  exposeRoute: true,
+};
+
 app.register(fastifySwaggerUi, swaggerUiOptions);
 
 app.register(userRouter);

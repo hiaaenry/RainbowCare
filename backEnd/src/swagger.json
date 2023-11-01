@@ -1,0 +1,153 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Test swagger specification",
+    "version": "1.0.0",
+    "title": "Test swagger specification",
+    "contact": {
+      "email": "salesrayane11@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/",
+      "description": "Localhost (uses test data)"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "sumary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "string",
+                  "email": "string",
+                  "password": "string",
+                  "role": {
+                    "enum": [
+                      "USER",
+                      "ADMIN"
+                    ]
+                  },
+                  "interested_tags": {
+                    "enum": [
+                      "JOB",
+                      "BOOTCAMP"
+                    ]
+                  }
+                },
+                "example": {
+                  "name": "user name",
+                  "email": "user.email@example.com",
+                  "password": "password",
+                  "role": "ADMIN",
+                  "interested_tags": [
+                    "JOB"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "sumary": "Create a session",
+        "description": "Create a new session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": "string",
+                  "password": "string"
+                },
+                "example": {
+                  "email": "user.email@example.com",
+                  "password": "password"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/foster-home": {
+      "post": {
+        "tags": [
+          "Foster Home"
+        ],
+        "sumary": "Create a foster home",
+        "description": "Create a new foster home",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "string",
+                  "description": "string",
+                  "tags": {
+                    "enum": [
+                      "JOB",
+                      "BOOTCAMP"
+                    ]
+                  }
+                },
+                "example": {
+                  "name": "foster home name",
+                  "description": "description",
+                  "tags": [
+                    "JOB"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    }
+  }
+}
