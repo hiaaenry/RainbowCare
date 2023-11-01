@@ -73,6 +73,25 @@
         }
       }
     },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "sumary": "Create a user",
+        "description": "Create a new user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
     "/sessions": {
       "post": {
         "tags": [
