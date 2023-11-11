@@ -1,4 +1,4 @@
-import Footer from './components/Footer';
+import Footer from './components/surfaces/Footer';
 
 function Login() {
   return (
@@ -15,10 +15,8 @@ function Login() {
               <div class="card rounded-lg px-6 py-10 mb-6 bg-white shadow-lg ">
                 
                 <form action="#">
-                  <div class="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">
-                    <a href="#" class="-m-1.5 p-1.5">
-                      <img src="logotipo.png" alt="logo" class="h-8 w-auto" />
-                    </a>
+                  <div class="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">   
+                      <img src="logotipo.png" alt="logo" class="h-8 w-auto" />                   
                   </div>
                   <div class="flex flex-col">
                     <input type="text" class="rounded-lg px-4 py-1 mx-4 mb-2 bg-white border border-fuchsia-500 text-gray-700 placeholder-gray-400 font-semibold focus:bg-white focus:outline-none" placeholder="E-mail" />
