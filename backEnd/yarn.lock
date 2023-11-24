@@ -95,6 +95,14 @@
     ajv-formats "^2.1.1"
     fast-uri "^2.0.0"
 
+"@fastify/cors@^8.4.1":
+  version "8.4.1"
+  resolved "https://registry.npmjs.org/@fastify/cors/-/cors-8.4.1.tgz"
+  integrity sha512-iYQJtrY3pFiDS5mo5zRaudzg2OcUdJ96PD6xfkKOOEilly5nnrFZx/W6Sce2T79xxlEn2qpU3t5+qS2phS369w==
+  dependencies:
+    fastify-plugin "^4.0.0"
+    mnemonist "0.39.5"
+
 "@fastify/deepmerge@^1.0.0":
   version "1.3.0"
   resolved "https://registry.npmjs.org/@fastify/deepmerge/-/deepmerge-1.3.0.tgz"
@@ -1324,6 +1332,19 @@ fastfall@^1.5.0:
   dependencies:
     reusify "^1.0.0"
 
+"fastify-cors-deprecated@npm:fastify-cors@6.0.3":
+  version "6.0.3"
+  resolved "https://registry.npmjs.org/fastify-cors/-/fastify-cors-6.0.3.tgz"
+  integrity sha512-fMbXubKKyBHHCfSBtsCi3+7VyVRdhJQmGes5gM+eGKkRErCdm0NaYO0ozd31BQBL1ycoTIjbqOZhJo4RTF/Vlg==
+  dependencies:
+    fastify-plugin "^3.0.0"
+    vary "^1.1.2"
+
+fastify-plugin@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/fastify-plugin/-/fastify-plugin-3.0.1.tgz"
+  integrity sha512-qKcDXmuZadJqdTm6vlCqioEbyewF60b/0LOFCcYN1B6BIZGlYJumWWOYs70SFYLDAH4YqdE1cxH/RKMG7rFxgA==
+
 fastify-plugin@^4.0.0:
   version "4.5.1"
   resolved "https://registry.npmjs.org/fastify-plugin/-/fastify-plugin-4.5.1.tgz"
@@ -2181,7 +2202,7 @@ mlly@^1.1.0, mlly@^1.2.0, mlly@^1.4.0:
     pkg-types "^1.0.3"
     ufo "^1.3.0"
 
-mnemonist@^0.39.5:
+mnemonist@^0.39.5, mnemonist@0.39.5:
   version "0.39.5"
   resolved "https://registry.npmjs.org/mnemonist/-/mnemonist-0.39.5.tgz"
   integrity sha512-FPUtkhtJ0efmEFGpU14x7jGbTB+s18LrzRL2KgoWz9YvcY3cPomz8tih01GbHwnGk/OmkOKfqd/RAQoc8Lm7DQ==
@@ -2523,6 +2544,11 @@ prisma@*, prisma@^5.3.0:
   integrity sha512-eLUR2gyKk8iRLAfy1H3Jel4SZQmjauTPTYX4UFFmwrMTrPnQzipspt48s6e45H5PKYq9zT5MQ9qWbkq9Ru4EAg==
   dependencies:
     "@prisma/engines" "5.3.0"
+
+process-warning@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/process-warning/-/process-warning-1.0.0.tgz"
+  integrity sha512-du4wfLyj4yCZq1VupnVSZmRsPJsNuxoDQFdCFHLaYiEbFBD7QE0a+I4D7hOxrVnh78QE/YipFAj9lXHiXocV+Q==
 
 process-warning@^2.0.0, process-warning@^2.2.0:
   version "2.2.0"
@@ -3332,6 +3358,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vary@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
+  integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
 vite-node@0.28.5:
   version "0.28.5"

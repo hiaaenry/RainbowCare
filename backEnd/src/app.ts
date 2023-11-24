@@ -2,6 +2,7 @@ import fastify from "fastify";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyJwt from "@fastify/jwt";
+import cors from "@fastify/cors";
 
 import { ZodError } from "zod";
 import { env } from "./env";
@@ -10,6 +11,12 @@ import { userRouter } from "./http/controllers/users/routes";
 import { fosterHomeRouter } from "./http/controllers/fosterHome/routes";
 
 export const app = fastify({ logger: true });
+
+app.register(cors, {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+});
 
 app.register(fastifySwagger, {
   mode: "static",
@@ -44,5 +51,7 @@ app.setErrorHandler((error, request, reply) => {
     console.error(error);
   }
 
-  return reply.status(500).send({ message: "Internal server error." });
+  return reply
+    .status(500)
+    .send({ message: "Internal server error.", error: error.message });
 });
