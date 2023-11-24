@@ -14,10 +14,12 @@ describe("Search Foster Home", async () => {
   it("should be able to search foster home", async () => {
     await fosterHomeRepository.create({
       name: "Name Test Foster Home 1",
+      description: "Description",
     });
 
     await fosterHomeRepository.create({
       name: "Name Test Foster Home 2",
+      description: "Description",
     });
 
     const { fosterHomes } = await sut.execute({

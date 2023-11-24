@@ -59,8 +59,6 @@ describe("Edit Profile Controller (e2e)", () => {
         email: "edit.email@example.com",
       });
 
-    console.log(result);
-
     expect(result.statusCode).toBe(404);
   });
 });
