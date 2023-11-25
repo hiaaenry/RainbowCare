@@ -1,8 +1,7 @@
 
-
 function Sobre(){
     return(
-        <div className='home'>
+        <div className='home' id='sobre'>
             <div className='center'>
                 <div className='sobre-page'>
 

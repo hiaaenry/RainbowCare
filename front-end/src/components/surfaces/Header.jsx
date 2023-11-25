@@ -1,3 +1,5 @@
+import { Link } from 'react-scroll';
+
 function Header() {
   return (
     <>
@@ -9,11 +11,11 @@ function Header() {
             </a>
           </div>
           <div class="hidden lg:flex lg:gap-x-12">
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Início</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Acolhimento</a>
+            <a href='#' class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Início</a>
+            <Link to='#' smooth={true} offset={50} class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Acolhimento</Link>
             <a href="#" class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Depoimentos</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Sobre</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Contato</a>
+            <Link to='sobre' smooth={true} offset={-100} duration={800} class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Sobre</Link>
+            <Link to='footer' smooth={true} offset={-100} duration={800} class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">Contato</Link>
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
             <button href="Login.jsx"

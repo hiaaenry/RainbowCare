@@ -9,11 +9,11 @@ import Login from './Login';
 function App() {
   return (
     <div className="App">
-      {/* <Header />
+      <Header />
       <Home />
       <Sobre />
-      <Footer /> */}
-      <Login/>
+      <Footer /> 
+      {/*<Login/>*/}
     </div>
   )
 }

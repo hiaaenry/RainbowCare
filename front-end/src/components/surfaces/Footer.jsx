@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <>
-            <footer className="bg-gray-950">
+            <footer className="bg-gray-950" id="footer">
                 <div className="container justify-center items-end">
                     <div className="pb-10 w-full h-full flex">
                         <div className="lg:flex-1 lg:justify-center">

@@ -1,6 +1,8 @@
+
+
 function Home() {
     return (
-        <>
+        <div id="Início">
             <div className="relative z-20 flex bg-scroll bg-cover bg-center overflow-hidden h-screen bg-gray-50" style={{ backgroundImage: "url('./background/home-banner-1.png')" }}>
                 <div class="relative mt-8 hidden sm:block">
                     <img src="name-rainbowcare-vector.svg" class="max-w-xs m-auto md:max-w-sm" />
@@ -17,7 +19,7 @@ function Home() {
             
             <div className="relative z-20 flex bg-scroll bg-auto overflow-hidden h-screen bg-gray-50" style={{ backgroundImage: "url('./background/home-banner-4.png')" }}>
             </div>
-        </>
+        </div>
     );
 }
 

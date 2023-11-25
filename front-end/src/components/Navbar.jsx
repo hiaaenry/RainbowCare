@@ -1,3 +1,4 @@
+
 function Navbar(){
   return(
       <div className='navbar'>
@@ -13,7 +14,7 @@ function Navbar(){
             </div>
 
             <div className='item-menu'>
-              <a  href='#'>Início</a>
+              <a href='#'>Início</a>
               <a href='#'>Sobre</a>
               <a href='#'>Depoimentos</a>
               <a href='#'>Contatos</a>
