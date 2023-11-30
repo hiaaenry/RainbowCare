@@ -1,9 +1,9 @@
 import './App.css';
 
-import Header from './components/surfaces/Header';
-import Home from './components/pages/Home';
-import Sobre from './components/pages/Sobre';
-import Footer from './components/surfaces/Footer';
+import Header from './layout/Header';
+import Home from './components/home/Home';
+import Sobre from './components/home/Sobre';
+import Footer from './layout/Footer';
 import Login from './Login';
 
 function App() {

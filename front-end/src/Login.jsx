@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Footer from './components/surfaces/Footer';
+
+import Footer from './layout/Footer';
 
 function Login() {
   const [email, setEmail] = useState('');
