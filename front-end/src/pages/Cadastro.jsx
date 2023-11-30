@@ -1,7 +1,9 @@
-export function Cadastro() {
+import Footer from "../layout/Footer";
+
+function Cadastro() {
     return (
         <>
-      <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-pink-300" style={{ backgroundImage: "url('./background/home-banner-4.png')" }}>
+            <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-pink-300" style={{ backgroundImage: "url('./background/home-banner-4.png')" }}>
                 <div className='container relative flex px-6 py-16 mx-auto'>
 
                     <div className="relative z-20 flex flex-col lg:w-2/5">
@@ -61,6 +63,9 @@ export function Cadastro() {
 
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
+
+export default Cadastro;

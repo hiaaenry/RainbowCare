@@ -1,6 +1,6 @@
 
 
-function Home() {
+function Banner() {
     return (
         <div id="Início">
             <div className="relative z-20 flex bg-scroll bg-cover bg-center overflow-hidden h-screen bg-gray-50" style={{ backgroundImage: "url('./background/home-banner-1.png')" }}>
@@ -23,4 +23,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Banner;
