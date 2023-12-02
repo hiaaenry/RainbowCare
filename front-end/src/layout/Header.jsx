@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom';
-import { Link as LinkScroll } from 'react-scroll';
+import { Link as LinkScroll, animateScroll as scroll } from 'react-scroll';
+
+import React, { useState, useEffect } from 'react';
 
 function Header() {
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setIsScrolled(offset > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
   return (
-    <header class="bg-white drop-shadow-lg">
+    <header className={`bg-white drop-shadow-lg ${isScrolled ? 'fixed top-0 left-0 w-full z-50' : ''}`}>
       <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
@@ -11,9 +30,9 @@ function Header() {
           </a>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
-          <a href='#' class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">
+          <button  onClick={scrollToTop} class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">
             Início
-          </a>
+          </button>
 
           <LinkScroll to='#' smooth={true} offset={50} class="text-sm font-semibold leading-6 text-gray-900 hover:text-fuchsia-500">
             Acolhimento
@@ -33,7 +52,7 @@ function Header() {
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
           <button class="text-sm font-semibold leading-6 text-fuchsia-500 px-7 py-1 mr-4 rounded-lg bg-transparent border-solid border-2 border-fuchsia-500
-            hover:text-fuchsia-400 hover:border-fuchsia-400" >
+            hover:text-fuchsia-400 hover:border-fuchsia-400 transition ease-in-out delay-150 hover:-translate-y-1 duration-300" >
             <Link to={'/login'}>
               Entrar
             </Link>

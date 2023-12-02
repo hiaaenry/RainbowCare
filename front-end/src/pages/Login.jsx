@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Footer from '../layout/Footer';
@@ -29,7 +30,9 @@ function Login() {
         <div className='container relative flex px-6 py-16 mx-auto'>
           
           <div className="relative hidden sm:block sm:w-1/3 lg:w-3/5">
-            <img src="login-img.png" alt="Login Image" className="max-w-xs m-auto md:max-w-sm" />
+            <Link to={'/#'}>
+                <img src="login-img.png" alt="Login Image" className="max-w-xs m-auto md:max-w-sm" />
+            </Link>
           </div>
           
           <div className="relative z-20 flex flex-col sm:w-2/3 lg:w-2/5">
@@ -38,7 +41,9 @@ function Login() {
                 
                 <form onSubmit={handleLogin}>
                   <div className="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">   
-                    <img src="logotipo.png" alt="Logo" className="h-8 w-auto" />                   
+                      <Link to={'/#'}>
+                        <img src="logotipo.png" alt="Logo" className="h-8 w-auto" />     
+                      </Link>
                   </div>
                   <div className="flex flex-col">
                     <input
