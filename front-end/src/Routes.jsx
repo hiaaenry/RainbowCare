@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home'
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
+import Tags from './pages/Tags';
 
 const AppRoutes = () => {
     return (
@@ -18,6 +19,10 @@ const AppRoutes = () => {
             <Route
                 path='cadastro'
                 element={<Cadastro />}
+            />
+            <Route
+                path='tags'
+                element={<Tags />}
             />
         </Routes>
     );
