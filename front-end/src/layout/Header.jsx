@@ -22,15 +22,15 @@ function Header() {
   };
 
   return (
-    <header className={`bg-white drop-shadow-lg ${isScrolled ? 'fixed top-0 left-0 w-full z-50' : ''}`}>
-      <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-        <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-1.5">
+    <header className={`bg-white drop-shadow-xl ${isScrolled ? 'fixed top-0 left-0 w-full z-50' : ''}`}>
+      <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 px-8">
+        <div class="flex flex-1">
+          <a href="/" class="-m-1.5 p-1.5">
             <img src="logotipo.png" alt="logo" class="h-8 w-auto" />
           </a>
         </div>
 
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="flex gap-x-12">
           <button onClick={scrollToTop} class="text-sm leading-6 text-gray-900 hover:text-fuchsia-500">
             Início
           </button>
@@ -39,7 +39,7 @@ function Header() {
             Acolhimento
           </LinkScroll>
 
-          <a href="#" class="text-sm leading-6 text-gray-900 hover:text-fuchsia-500">
+          <a href="/" class="text-sm leading-6 text-gray-900 hover:text-fuchsia-500">
             Depoimentos
           </a>
 
@@ -52,7 +52,7 @@ function Header() {
           </LinkScroll>
         </div>
 
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div class="flex flex-1 justify-end">
           <button class="text-sm leading-6 px-7 py-1 mr-4 rounded-full bg-transparent border-solid border-2 border-fuchsia-500 text-fuchsia-500 hover:text-gray-900 hover:border-gray-900" >
             <Link to={'/login'}>
               Entrar
