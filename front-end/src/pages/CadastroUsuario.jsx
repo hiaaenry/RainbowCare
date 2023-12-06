@@ -1,6 +1,6 @@
 import Footer from "../layout/Footer";
 
-function Cadastro() {
+function CadastroUsuario() {
     return (
         <>
             <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-gray-50" style={{ backgroundImage: "url('./background/register-bg.png')" }}>
@@ -149,4 +149,4 @@ function Cadastro() {
     )
 }
 
-export default Cadastro;
+export default CadastroUsuario;

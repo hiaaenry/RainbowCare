@@ -2,9 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
+import CadastroUsuario from './pages/CadastroUsuario';
 import Tags from './pages/Tags';
 import Home from './pages/Home'
+import CadastroCasas from './pages/CadastroCasas';
 
 const AppRoutes = () => {
     return (
@@ -19,7 +20,7 @@ const AppRoutes = () => {
             />
             <Route
                 path='cadastro'
-                element={<Cadastro />}
+                element={<CadastroUsuario />}
             />
             <Route
                 path='tags'
@@ -28,6 +29,10 @@ const AppRoutes = () => {
             <Route
                 path='index'
                 element={<Home />}
+            />
+            <Route
+                path='cadastro-casas'
+                element={<CadastroCasas />}
             />
         </Routes>
     );
