@@ -1,16 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home'
+import LandingPage from './pages/LandingPage'
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Tags from './pages/Tags';
+import Home from './pages/Home'
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route
                 path='/'
-                element={<Home />}
+                element={<LandingPage />}
             />
             <Route
                 path='login'
@@ -23,6 +24,10 @@ const AppRoutes = () => {
             <Route
                 path='tags'
                 element={<Tags />}
+            />
+            <Route
+                path='index'
+                element={<Home />}
             />
         </Routes>
     );

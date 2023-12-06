@@ -1,19 +1,13 @@
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
-import Banner from '../components/Banner';
-import Sobre from '../components/Sobre';
-import Acolhimento from '../components/Acolhimento';
-import Contato from '../components/Contato';
+import Casas from '../components/Casas';
 
 function Home() {
     return (
         <>
             <div className="App">
                 <Header />
-                <Banner />
-                <Sobre />
-                <Acolhimento />
-                <Contato />
+                <Casas />
                 <Footer />
             </div>
         </>
