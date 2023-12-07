@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from "../components/AuthContext";
+import { useNavigate  } from 'react-router-dom';
+
 
 import Footer from '../layout/Footer';
 
@@ -8,7 +11,12 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+    const { login } = useAuth();
+
+   const navigate = useNavigate();
+
+
+  const doLogin = async (e) => {
     e.preventDefault();
 
     try {
@@ -18,6 +26,10 @@ function Login() {
       });
 
       console.log('Login bem-sucedido:', response.data);
+
+      login(response.data.token);
+
+    navigate('/index');
 
     } catch (error) {
       console.error('Falha no login:', error.response);
@@ -39,7 +51,7 @@ function Login() {
             <div className="w-full md:max-w-md mt-6">
               <div className="card rounded-lg px-6 py-10 mb-6 bg-white shadow-lg">
                 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={doLogin}>
                   <div className="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">   
                       <Link to={'/#'}>
                         <img src="logotipo.png" alt="Logo" className="h-8 w-auto" />     

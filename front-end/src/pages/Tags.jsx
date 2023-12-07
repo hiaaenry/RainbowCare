@@ -1,6 +1,16 @@
 import Footer from "../layout/Footer";
+import { useAuth } from "../components/AuthContext";
+import { Navigate } from 'react-router-dom';
 
 function Tags() {
+
+    const { token } = useAuth();
+
+    // Se o usuário não estiver autenticado, redirecione para a página de login
+    if (!token) {
+        return <Navigate to="/login" />;
+    }
+
     return (
         <>
             <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-gray-50" style={{ backgroundImage: "url('./background/tags-bg.png')" }}>

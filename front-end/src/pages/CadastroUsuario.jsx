@@ -1,6 +1,58 @@
 import Footer from "../layout/Footer";
+import React, { useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
+import { useAuth } from "../components/AuthContext";
+
+import axios from 'axios';
+
 
 function CadastroUsuario() {
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const { login } = useAuth();
+
+   const navigate = useNavigate();
+
+   const doLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:3333/sessions', {
+        email: email,
+        password: password,
+      });
+
+      console.log('Login bem-sucedido:', response.data.token);
+
+      login(response.data.token);
+
+    navigate('/tags');
+    } catch (error) {
+      console.error('Falha no login:', error.response);
+    }
+  };
+
+  const doRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3333/users', {
+        name: name,
+        last_name: lastName,
+        email: email,
+        password: password,
+        interested_tags: ["JOB"],
+        role: "USER"
+      });
+
+      console.log('Like:', response.data);
+      await doLogin();
+
+    } catch (error) {
+      console.error('Lascou:', error.response);
+    }
+  };
     return (
         <>
             <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-gray-50" style={{ backgroundImage: "url('./background/register-bg.png')" }}>
@@ -21,7 +73,7 @@ function CadastroUsuario() {
                                     </a>
                                 </div>
 
-                                <div>
+                                <form onSubmit={doRegister}>
                                     <div className="flex -mx-3">
                                         <div className="w-1/2 px-3 mb-5">
                                             <label for="" className="text-xs font-semibold px-1">
@@ -37,6 +89,8 @@ function CadastroUsuario() {
                                                 </div>
                                                 <input
                                                     type="text"
+                                                    value={name}
+                      onChange={(e) => setName(e.target.value)}
                                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
                                                     placeholder="Digite seu nome"
                                                 />
@@ -56,6 +110,8 @@ function CadastroUsuario() {
                                                 </div>
                                                 <input
                                                     type="text"
+                                                    value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
                                                     placeholder="Digite seu sobrenome"
                                                 />
@@ -77,6 +133,8 @@ function CadastroUsuario() {
                                                 </div>
                                                 <input
                                                     type="email"
+                                                    value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
                                                     placeholder="nome@email.com"
                                                 />
@@ -98,6 +156,8 @@ function CadastroUsuario() {
                                                 </div>
                                                 <input
                                                     type="password"
+                                                    value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
                                                     placeholder="************"
                                                 />
@@ -135,7 +195,7 @@ function CadastroUsuario() {
                                     <a href="/login" class="flex my-1 py-2 justify-center text-fuchsia-500 hover:text-fuchsia-600 font-semibold underline">
                                         Já possui cadastro?
                                     </a>
-                                </div>
+                                </form>
                             </div>
 
                         </div>
