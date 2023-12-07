@@ -5,6 +5,7 @@ import { Role, Tag, User } from "@prisma/client";
 
 interface RegisterServiceRequest {
   name: string;
+  last_name: string;
   email: string;
   password: string;
   role?: Role;
@@ -20,6 +21,7 @@ export class RegisterService {
 
   async execute({
     name,
+    last_name,
     email,
     password,
     role,
@@ -35,6 +37,7 @@ export class RegisterService {
 
     const user = await this.usersRepository.create({
       name,
+      last_name,
       email,
       password_hash,
       role,

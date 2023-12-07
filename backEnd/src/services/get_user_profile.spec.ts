@@ -15,7 +15,8 @@ describe("Get User Profile Service", () => {
 
   it("should be able to get user profile", async () => {
     const createdUser = await usersRepository.create({
-      name: "User Test Name",
+      name: "User",
+      last_name: "Test Name",
       email: "email.test@example.com",
       password_hash: await hash("passwordtest", 6),
     });
@@ -25,7 +26,7 @@ describe("Get User Profile Service", () => {
     });
 
     expect(user.id).toEqual(expect.any(String));
-    expect(user.name).toEqual("User Test Name");
+    expect(user.name).toEqual("User");
   });
 
   it("should not be able to get user profile with wrong id", async () => {

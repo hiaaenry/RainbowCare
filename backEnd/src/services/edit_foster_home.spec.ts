@@ -14,6 +14,7 @@ describe("Edit Foster Home", () => {
   it("should be able to edit foster home", async () => {
     const edit = await fosterHomeRepository.create({
       name: "Foster Home",
+      description: "description",
     });
 
     const { fosterHome } = await sut.execute({

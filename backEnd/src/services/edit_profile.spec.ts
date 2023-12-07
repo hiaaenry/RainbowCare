@@ -15,7 +15,8 @@ describe("Edit User Profile Service", async () => {
 
   it("should be able to edit user profile", async () => {
     const createdUser = await usersRepository.create({
-      name: "User Name Test",
+      name: "User",
+      last_name: "Name Test",
       email: "test.email@example.com",
       password_hash: await hash("passwordtest", 6),
     });

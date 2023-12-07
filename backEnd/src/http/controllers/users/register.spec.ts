@@ -16,7 +16,8 @@ describe("Register Controller (e2e)", () => {
     const response = await request(app.server)
       .post("/users")
       .send({
-        name: "Test Name",
+        name: "Test",
+        last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
         role: "USER",
@@ -30,7 +31,8 @@ describe("Register Controller (e2e)", () => {
     const response = await request(app.server)
       .post("/users")
       .send({
-        name: "Test Name",
+        name: "Test",
+        last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
         role: "USER",
@@ -44,7 +46,8 @@ describe("Register Controller (e2e)", () => {
     const result = await request(app.server)
       .post("/users")
       .send({
-        name: "Test Name",
+        name: "Test",
+        last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
         interested_tags: ["JOB"],

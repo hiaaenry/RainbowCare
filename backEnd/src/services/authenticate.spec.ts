@@ -15,7 +15,8 @@ describe("Authenticate Service", () => {
 
   it("should be able to authenticate", async () => {
     await usersRepository.create({
-      name: "User Test Name",
+      name: "User",
+      last_name: "Test Name",
       email: "user.test.email@example.com",
       password_hash: await hash("123456", 6),
     });
@@ -39,7 +40,8 @@ describe("Authenticate Service", () => {
 
   it("should not be able to authenticate with wrong password", async () => {
     await usersRepository.create({
-      name: "User Test Name",
+      name: "User",
+      last_name: "Test Name",
       email: "user.test.email@example.com",
       password_hash: await hash("123456", 6),
     });

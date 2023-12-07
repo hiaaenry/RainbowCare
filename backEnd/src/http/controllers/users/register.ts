@@ -7,13 +7,14 @@ import { z } from "zod";
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     name: z.string(),
+    last_name: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
     role: z.enum(["USER", "ADMIN"]),
     interested_tags: z.enum(["JOB", "BOOTCAMP"]).array(),
   });
 
-  const { name, email, password, role, interested_tags } =
+  const { name, last_name, email, password, role, interested_tags } =
     registerBodySchema.parse(request.body);
 
   try {
@@ -21,6 +22,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     await registerService.execute({
       name,
+      last_name,
       email,
       password,
       role,

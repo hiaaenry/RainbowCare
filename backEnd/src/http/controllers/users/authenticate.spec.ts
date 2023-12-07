@@ -15,7 +15,8 @@ describe("Authenticate Controller (e2e)", () => {
     await request(app.server)
       .post("/users")
       .send({
-        name: "Test Name",
+        name: "Test",
+        last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
         role: "USER",

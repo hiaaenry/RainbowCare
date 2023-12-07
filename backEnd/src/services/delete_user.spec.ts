@@ -15,7 +15,8 @@ describe("Delete User Profile Service", () => {
 
   it("should be able to delete user by id", async () => {
     const user = await usersRepository.create({
-      name: "User Name Test",
+      name: "User",
+      last_name: "Name Test",
       email: "test.email@example.com",
       password_hash: await hash("password", 6),
     });
