@@ -1,61 +1,66 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useAuth } from "../components/AuthContext";
-import { useNavigate  } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useAuth } from '../components/AuthContext'
 
-
-import Footer from '../layout/Footer';
+import Footer from '../layout/Footer'
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-    const { login } = useAuth();
+  const { login } = useAuth()
 
-   const navigate = useNavigate();
-
+  const navigate = useNavigate()
 
   const doLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const response = await axios.post('http://localhost:3333/sessions', {
-        email: email,
-        password: password,
-      });
+        email,
+        password,
+      })
 
-      console.log('Login bem-sucedido:', response.data);
+      console.log('Login bem-sucedido:', response.data)
 
-      login(response.data.token);
+      login(response.data.token)
 
-    navigate('/index');
-
+      navigate('/index')
     } catch (error) {
-      console.error('Falha no login:', error.response);
+      console.error('Falha no login:', error.response)
     }
-  };
+  }
 
   return (
     <>
-      <div className="relative z-20 flex bg-cover bg-center overflow-hidden bg-gray-50" style={{ backgroundImage: "url('./background/login-bg.png')" }}>
-        <div className='container relative flex px-6 py-16 mx-auto'>
-          
+      <div
+        className="relative z-20 flex bg-cover bg-center overflow-hidden bg-gray-50"
+        style={{ backgroundImage: "url('./background/login-bg.png')" }}
+      >
+        <div className="container relative flex px-6 py-16 mx-auto">
           <div className="relative hidden sm:block sm:w-1/3 lg:w-3/5">
-            <Link to={'/#'}>
-                <img src="login-img.png" alt="Login Image" className="max-w-xs m-auto md:max-w-sm" />
+            <Link to="/#">
+              <img
+                src="login-img.png"
+                alt=""
+                className="max-w-xs m-auto md:max-w-sm"
+              />
             </Link>
           </div>
-          
+
           <div className="relative z-20 flex flex-col sm:w-2/3 lg:w-2/5">
             <div className="w-full md:max-w-md mt-6">
               <div className="card rounded-lg px-6 py-10 mb-6 bg-white shadow-lg">
-                
                 <form onSubmit={doLogin}>
-                  <div className="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">   
-                      <Link to={'/#'}>
-                        <img src="logotipo.png" alt="Logo" className="h-8 w-auto" />     
-                      </Link>
+                  <div className="flex justify-center mb-10 text-xl text-center font-semibold text-gray-300">
+                    <Link to="/#">
+                      <img
+                        src="logotipo.png"
+                        alt="Logo"
+                        className="h-8 w-auto"
+                      />
+                    </Link>
                   </div>
                   <div className="flex flex-col">
                     <input
@@ -80,21 +85,22 @@ function Login() {
                     >
                       Entrar
                     </button>
-                    <a href="/#" className="my-1 py-2 flex justify-start text-fuchsia-500 underline">
+                    <a
+                      href="/#"
+                      className="my-1 py-2 flex justify-start text-fuchsia-500 underline"
+                    >
                       Esqueceu a senha?
                     </a>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <Footer />
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login
