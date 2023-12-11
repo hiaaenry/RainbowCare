@@ -1,13 +1,68 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Footer from '../layout/Footer'
 import { useAuth } from '../components/AuthContext'
 
+const tagNames = ['JOB', 'BOOTCAMP', 'Tag3', 'Tag4', 'Tag5']
+
 function Tags() {
   const { token } = useAuth()
+  const [selectedTags, setSelectedTags] = useState([])
+
+  const navigate = useNavigate()
 
   if (!token) {
     return <Navigate to="/login" />
+  }
+
+  const doProfile = async () => {
+    try {
+      const response = await axios.get('http://localhost:3333/users/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const userId = response.data.user.id
+      return userId
+    } catch (error) {
+      return null
+    }
+  }
+
+  const handleTagSelection = (tag) => {
+    const isSelected = selectedTags.includes(tag)
+
+    if (isSelected) {
+      setSelectedTags((prevSelectedTags) =>
+        prevSelectedTags.filter((selectedTag) => selectedTag !== tag),
+      )
+    } else {
+      setSelectedTags((prevSelectedTags) => [...prevSelectedTags, tag])
+    }
+  }
+
+  const doTags = async () => {
+    try {
+      const userId = await doProfile()
+
+      await axios.put(
+        `http://localhost:3333/users/select-tags/${userId}`,
+        {
+          interested_tags: selectedTags,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+
+      navigate('/index')
+    } catch (error) {
+      console.error('Falha na seleção de tags:', error.response)
+    }
   }
 
   return (
@@ -31,89 +86,24 @@ function Tags() {
                 </div>
 
                 <div className="grid grid-flow-row-dense grid-cols-5 gap-5">
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
-                  <input
-                    type="button"
-                    className="bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold"
-                    value="Digite"
-                  />
+                  {tagNames.map((tagName) => (
+                    <input
+                      key={tagName}
+                      type="button"
+                      className={`bg-lime-200 hover:bg-fuchsia-400 focus:bg-fuchsia-400 hover:shadow-xl focus:shadow-xl text-gray-900 rounded-lg px-3 py-3 justify-center font-semibold ${selectedTags.includes(
+                        tagName,
+                      )}`}
+                      value={tagName}
+                      onClick={() => handleTagSelection(tagName)}
+                    />
+                  ))}
                 </div>
 
                 <div className="flex mt-14">
                   <button
-                    type="button"
+                    type="submit"
                     className="block w-full max-w-xs mx-auto bg-fuchsia-500 hover:bg-fuchsia-600 focus:bg-fuchsia-600 hover:shadow-xl focus:shadow-xl text-white rounded-lg px-3 py-3 font-semibold"
+                    onClick={doTags}
                   >
                     Continuar
                   </button>
