@@ -1,3 +1,4 @@
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import LandingPage from './pages/LandingPage'
@@ -7,7 +8,7 @@ import Tags from './pages/Tags'
 import Home from './pages/Home'
 import CadastroCasas from './pages/CadastroCasas'
 
-const AppRoutes = () => {
+function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import Footer from '../layout/Footer'
 
@@ -33,7 +34,7 @@ function CadastroCasas() {
                 <div>
                   <div className="flex -mx-3">
                     <div className="w-1/2 px-3 mb-5">
-                      <label htmlFor="" className="text-xs font-semibold px-1">
+                      <label className="text-xs font-semibold px-1">
                         Nome da casa de acolhimento
                       </label>
                       <div className="flex">
