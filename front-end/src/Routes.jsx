@@ -7,6 +7,8 @@ import CadastroUsuario from './pages/CadastroUsuario'
 import Tags from './pages/Tags'
 import Home from './pages/Home'
 import CadastroCasas from './pages/CadastroCasas'
+import Perfil from './pages/Perfil'
+import Modal from './components/Modal'
 
 function AppRoutes() {
   return (
@@ -17,6 +19,8 @@ function AppRoutes() {
       <Route path="tags" element={<Tags />} />
       <Route path="index" element={<Home />} />
       <Route path="cadastro-casas" element={<CadastroCasas />} />
+      <Route path="perfil" element={<Perfil />} />
+      <Route path="modal" element={<Modal />} />
     </Routes>
   )
 }
