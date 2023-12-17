@@ -8,8 +8,8 @@ import Tags from './pages/Tags'
 import Home from './pages/Home'
 import CadastroCasas from './pages/CadastroCasas'
 import TutorialAdmin from'./pages/TutorialAdmin'
+import TutorialCasasApoio from'./pages/TutorialCasasApoio'
 import Perfil from './pages/Perfil'
-import TutorialCasasApoio from './pages/TutorialCasasApoio'
 
 function AppRoutes() {
   return (
@@ -21,8 +21,9 @@ function AppRoutes() {
       <Route path="index" element={<Home />} />
       <Route path="cadastro-casas" element={<CadastroCasas />} />
       <Route path="tutorial-adm" element={<TutorialAdmin />} />
-      <Route path="perfil" element={<Perfil />} />
       <Route path="casas-de-apoio" element={<TutorialCasasApoio />} />
+      <Route path="perfil" element={<Perfil />} />
+ 
     </Routes>
   )
 }
