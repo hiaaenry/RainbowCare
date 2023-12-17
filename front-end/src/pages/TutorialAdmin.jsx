@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
+
 import Header from '../layout/Header'
 import Footer from '../layout/Footer';
 
@@ -101,7 +103,7 @@ const TutorialAdmin = () => {
                         href="/cadastro"
                         className="block w-full max-w-xs mx-auto bg-fuchsia-500 hover:bg-fuchsia-600 focus:bg-fuchsia-600 
                         hover:shadow-xl focus:shadow-xl text-white rounded-lg px-3 py-3 font-semibold">
-                        Cadastre-se
+                        <Link to="/cadastro">Cadastre-se</Link>
                       </button>
                     </div>
                   </div>

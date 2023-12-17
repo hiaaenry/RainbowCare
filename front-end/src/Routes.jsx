@@ -9,7 +9,7 @@ import Home from './pages/Home'
 import CadastroCasas from './pages/CadastroCasas'
 import TutorialAdmin from'./pages/TutorialAdmin'
 import Perfil from './pages/Perfil'
-import Modal from './components/Modal'
+//import Modal from './components/Modal'
 
 function AppRoutes() {
   return (
@@ -22,7 +22,7 @@ function AppRoutes() {
       <Route path="cadastro-casas" element={<CadastroCasas />} />
       <Route path="tutorial-adm" element={<TutorialAdmin />} />
       <Route path="perfil" element={<Perfil />} />
-      <Route path="modal" element={<Modal />} />
+      {/*<Route path="modal" element={<Modal />} />*/}
     </Routes>
   )
 }
