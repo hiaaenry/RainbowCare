@@ -1,9 +1,11 @@
 import { Checkbox, Typography } from "@material-tailwind/react";
+import { useState } from "react";
  
-export default function CheckboxLink() {
+export default function CheckboxLink({ checked, onChange }) {
   return (
     <Checkbox href="tutorial-admin"
-
+      checked={checked}
+      onChange={onChange}
       label={
         <Typography color="blue-gray" className="flex ml-3 font-medium">
             Eu concordo com o          

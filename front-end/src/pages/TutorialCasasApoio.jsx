@@ -6,6 +6,7 @@ import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
 const TutorialCasasApoio = () => {
+  
   const [isTermAccepted, setTermAccepted] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -81,22 +82,24 @@ const TutorialCasasApoio = () => {
                       : 'Por favor, aceite o Termo de Compromisso.'}
                   </p>
 
-                  <div className="flex -mx-3">
-                    <div className="px-5 mt-5">
-
-                        <button
-                          type="button"
-                          className="text-sm leading-6 px-10 py-1 mr-4 rounded-full bg-transparent border-solid border-2 border-fuchsia-500 text-fuchsia-500 hover:text-gray-900 hover:border-gray-900"
-                        >
-                          <Link to="/">Voltar</Link>
-                        </button>
-                        <button
-                          type="button"
-                          className="text-sm leading-6 px-5 py-1 ml-4 rounded-full text-white bg-fuchsia-500 hover:bg-fuchsia-600 hover:shadow-lg"
-                        >
-                          <Link to="/tutorial-adm">Se tornar Administrador</Link>
-                        </button>
-                      </div>
+                  <div className="flex items-center mt-7">
+                    <button
+                      type="button"
+                      className="text-sm font-semibold mx-auto px-10 py-3 rounded-lg bg-transparent border-solid border-2 border-fuchsia-500 text-fuchsia-500 hover:text-gray-900 hover:border-gray-900"
+                    >
+                      <Link to="/">Voltar</Link>
+                    </button>
+                    <Link
+                      to={isTermAccepted ? "/tutorial-adm" : "#"}
+                      className={`block mx-auto bg-fuchsia-500 ${
+                        isTermAccepted
+                          ? "hover:bg-fuchsia-600 focus:bg-fuchsia-600 hover:shadow-xl focus:shadow-xl"
+                          : "cursor-not-allowed opacity-50"
+                      } text-white rounded-lg px-10 py-3 font-semibold`}
+                    >
+                      Se tornar Administrador
+                    </Link>
+      
                   </div>
                 </div>
               </div>

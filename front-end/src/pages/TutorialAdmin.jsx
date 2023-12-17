@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import CheckboxLink from '../components/Checkbox';
 
 import Header from '../layout/Header'
 import Footer from '../layout/Footer';
@@ -82,29 +83,27 @@ const TutorialAdmin = () => {
                     Para continuar, marque abaixo a caixa "Termo de Compromisso" se concordar com as regras e responsabilidades.
                   </p>
                   <div className="mt-3">
-                    <input
-                      type="checkbox"
-                      id="termCheckbox"
-                      checked={isTermAccepted}
-                      onChange={handleCheckboxChange}
-                    />
-                    <label className="ml-2" htmlFor="termCheckbox">
-                      Eu concordo com o Termo de Compromisso
-                    </label>
+
+                  <CheckboxLink checked={isTermAccepted} onChange={handleCheckboxChange} />
+
                   </div>
                   <p className="mt-1 mb-2 italic">
                     {isTermAccepted
                       ? 'Obrigado por se comprometer!'
                       : 'Por favor, aceite o Termo de Compromisso.'}
                   </p>
+
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mt-5">
-                      <button
-                        href="/cadastro"
-                        className="block w-full max-w-xs mx-auto bg-fuchsia-500 hover:bg-fuchsia-600 focus:bg-fuchsia-600 
-                        hover:shadow-xl focus:shadow-xl text-white rounded-lg px-3 py-3 font-semibold">
-                        <Link to="/cadastro">Cadastre-se</Link>
-                      </button>
+                    <Link
+                      to={isTermAccepted ? "/cadastro" : "#"}
+                      className={`block w-fit mx-auto bg-fuchsia-500 ${
+                        isTermAccepted
+                          ? "hover:bg-fuchsia-600 focus:bg-fuchsia-600 hover:shadow-xl focus:shadow-xl"
+                          : "cursor-not-allowed opacity-50"
+                      } text-white rounded-lg px-10 py-3 font-semibold`}> 
+                      Cadastre-se
+                    </Link>
                     </div>
                   </div>
                 </div>
