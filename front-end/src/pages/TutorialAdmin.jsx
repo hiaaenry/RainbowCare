@@ -53,10 +53,10 @@ const TutorialAdmin = () => {
                     da plataforma RainbowCare, onde nosso objetivo é apoiar a comunidade
                     LGBTQIAP+. 
                   </p>
-                  <p className='mt-2'>
-                    Aqui estão algumas regras e diretrizes importantes que todo
-                    administrador deve seguir:
-                  </p>
+
+                  <h3 className="text-xl font-semibold italic mb-2 mt-3">Regras e Diretrizes importantes que o
+                    administrador deve seguir:</h3>
+
                   <h3 className="text-2x2 font-semibold mb-2 mt-3">Respeito à Diversidade:</h3>
                     <ul className="list-disc list-inside">
                       <li>Respeitar e promover a diversidade e inclusão de identidades de gênero e orientações sexuais.</li>
