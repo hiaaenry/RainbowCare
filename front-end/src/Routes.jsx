@@ -7,6 +7,7 @@ import CadastroUsuario from './pages/CadastroUsuario'
 import Tags from './pages/Tags'
 import Home from './pages/Home'
 import CadastroCasas from './pages/CadastroCasas'
+import TutorialAdmin from'./pages/TutorialAdmin'
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
       <Route path="tags" element={<Tags />} />
       <Route path="index" element={<Home />} />
       <Route path="cadastro-casas" element={<CadastroCasas />} />
+      <Route path="tutorial-adm" element={<TutorialAdmin />} />
     </Routes>
   )
 }
