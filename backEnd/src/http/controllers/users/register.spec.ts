@@ -1,7 +1,6 @@
 import request from "supertest";
 import { app } from "@/app";
-import { afterAll, beforeAll, describe, expect, it, test } from "vitest";
-import { ZodError } from "zod";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 describe("Register Controller (e2e)", () => {
   beforeAll(async () => {
@@ -20,11 +19,28 @@ describe("Register Controller (e2e)", () => {
         last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
+        confirm_password: "test.password",
         role: "USER",
         interested_tags: ["JOB"],
       });
 
     expect(response.statusCode).toBe(201);
+  });
+
+  it("should not be able to register with passwords that do not match", async () => {
+    const response = await request(app.server)
+      .post("/users")
+      .send({
+        name: "Test",
+        last_name: "Name",
+        email: "test.email@example.com",
+        password: "test.password",
+        confirm_password: "test.confirm.password",
+        role: "USER",
+        interested_tags: ["JOB"],
+      });
+
+    expect(response.statusCode).toBe(400);
   });
 
   it("should not be able register an user existent", async () => {
@@ -35,6 +51,7 @@ describe("Register Controller (e2e)", () => {
         last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
+        confirm_password: "test.password",
         role: "USER",
         interested_tags: ["JOB"],
       });
@@ -50,6 +67,7 @@ describe("Register Controller (e2e)", () => {
         last_name: "Name",
         email: "test.email@example.com",
         password: "test.password",
+        confirm_password: "test.password",
         interested_tags: ["JOB"],
       });
 
