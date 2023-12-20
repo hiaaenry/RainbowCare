@@ -8,7 +8,24 @@ export async function selectTags(request: FastifyRequest, reply: FastifyReply) {
     userId: z.string().uuid(),
   });
   const selectTagsProfileBodySchema = z.object({
-    interested_tags: z.enum(["JOB", "BOOTCAMP"]).array(),
+    interested_tags: z
+      .enum([
+        "JOB",
+        "BOOTCAMP",
+        "JOB",
+        "BOOTCAMP",
+        "HEALTH",
+        "HOME",
+        "LEISURE",
+        "EDUCATION",
+        "NEWS",
+        "ENTERTAINMENT",
+        "BIOGRAPHY",
+        "EVENTS",
+        "LIFESTYLE",
+        "PSYCHOLOGY",
+      ])
+      .array(),
   });
 
   const { userId } = selectTagsProfileParamsSchema.parse(request.params);
