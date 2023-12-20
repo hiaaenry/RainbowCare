@@ -1,10 +1,23 @@
-import React, { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import Footer from '../layout/Footer'
-import { useAuth } from '../components/AuthContext'
+import React, { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
+import axios from "axios"
+import Footer from "../layout/Footer"
+import { useAuth } from "../components/AuthContext"
 
-const tagNames = ['JOB', 'BOOTCAMP', 'Tag3', 'Tag4', 'Tag5']
+const tagNames = [
+  "JOB",
+  "BOOTCAMP",
+  "HEALTH",
+  "HOME",
+  "LEISURE",
+  "EDUCATION",
+  "NEWS",
+  "ENTERTAINMENT",
+  "BIOGRAPHY",
+  "EVENTS",
+  "LIFESTYLE",
+  "PSYCHOLOGY",
+]
 
 function Tags() {
   const { token } = useAuth()
@@ -18,7 +31,7 @@ function Tags() {
 
   const doProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:3333/users/me', {
+      const response = await axios.get("http://localhost:3333/users/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,9 +72,9 @@ function Tags() {
         },
       )
 
-      navigate('/index')
+      navigate("/index")
     } catch (error) {
-      console.error('Falha na seleção de tags:', error.response)
+      console.error("Falha na seleção de tags:", error.response)
     }
   }
 
