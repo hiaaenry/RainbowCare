@@ -28,6 +28,13 @@ export class InMemoryFosterHomeRepository implements FosterHomeRepository {
       created_at: new Date(),
       description: data.description,
       recipient_email: data.recipient_email as Tag[],
+      neighborhood: data.neighborhood,
+      phone_number: data.phone_number,
+      site: data.site,
+      social_network: data.social_network,
+      state: data.state,
+      street: data.street,
+      house_number: data.house_number,
     };
 
     this.items.push(fosterHome);

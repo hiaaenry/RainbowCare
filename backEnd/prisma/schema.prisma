@@ -28,6 +28,13 @@ model FosterHome {
   name            String
   created_at      DateTime @default(now())
   description     String
+  phone_number    String
+  street          String
+  neighborhood    String
+  house_number    String
+  state           String
+  site            String
+  social_network  String
   recipient_email String[]
   tags            Tag[]
 

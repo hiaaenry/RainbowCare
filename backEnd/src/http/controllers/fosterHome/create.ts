@@ -11,11 +11,27 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     name: z.string(),
     tags: z.enum(["JOB", "BOOTCAMP"]).array(),
     description: z.string(),
+    phone_number: z.string(),
+    street: z.string(),
+    neighborhood: z.string(),
+    house_number: z.string(),
+    state: z.string(),
+    site: z.string(),
+    social_network: z.string(),
   });
 
-  const { name, tags, description } = createFosterFomeBodySchema.parse(
-    request.body
-  );
+  const {
+    name,
+    tags,
+    description,
+    neighborhood,
+    phone_number,
+    site,
+    social_network,
+    state,
+    street,
+    house_number,
+  } = createFosterFomeBodySchema.parse(request.body);
 
   try {
     const createFosterHomeService = makeCreateFosterHomeService();
@@ -24,6 +40,13 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       name,
       tags,
       description,
+      neighborhood,
+      phone_number,
+      site,
+      social_network,
+      state,
+      street,
+      house_number,
     });
   } catch (error) {
     if (error instanceof UserAlreadyExistsError) {
