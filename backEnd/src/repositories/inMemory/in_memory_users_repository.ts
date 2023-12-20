@@ -71,4 +71,8 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     return this.items[userIndex];
   }
+
+  async comparePassword(password: string, confirmPassword: string) {
+    return password === confirmPassword;
+  }
 }

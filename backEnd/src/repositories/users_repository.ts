@@ -7,4 +7,5 @@ export interface UsersRepository {
   create(data: Prisma.UserCreateInput): Promise<User>;
   save(user: User): Promise<User>;
   deleteUserById(user: User): Promise<User | null>;
+  comparePassword(password: string, confirmPassword: string): Promise<boolean>;
 }

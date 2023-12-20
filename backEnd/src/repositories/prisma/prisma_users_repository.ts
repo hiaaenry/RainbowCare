@@ -69,4 +69,8 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return user;
   }
+
+  async comparePassword(password: string, confirmPassword: string) {
+    return password === confirmPassword;
+  }
 }
