@@ -1,8 +1,58 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react'
-import Footer from '../layout/Footer'
+import React, { useState } from "react"
+import { Navigate } from "react-router-dom"
+import axios from "axios"
+import Footer from "../layout/Footer"
+import { useAuth } from "../components/AuthContext"
 
 function CadastroCasas() {
+  const { token } = useAuth()
+
+  if (!token) {
+    return <Navigate to="/login" />
+  }
+
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [street, setStreet] = useState("")
+  const [neighborhood, setNeighborhood] = useState("")
+  const [houseNumber, setHouseNumber] = useState("")
+  const [state, setState] = useState("")
+  const [site, setSite] = useState("")
+  const [socialNetwork, setSocialNetwork] = useState("")
+  // const [tags, setTags] = useState([])
+
+  const doRegister = async (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3333/foster-home",
+        {
+          name,
+          tags: ["JOB"],
+          description,
+          neighborhood,
+          phone_number: phoneNumber,
+          site,
+          social_network: socialNetwork,
+          state,
+          street,
+          house_number: houseNumber,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+
+      console.log("Like:", response.data)
+    } catch (error) {
+      console.error("Lascou:", error.response)
+    }
+  }
   return (
     <>
       <div
@@ -32,167 +82,251 @@ function CadastroCasas() {
                 </div>
 
                 <div>
-                  <div className="flex -mx-3">
-                    <div className="w-1/2 px-3 mb-5">
-                      <label className="text-xs font-semibold px-1">
-                        Nome da casa de acolhimento
-                      </label>
-                      <div className="flex">
-                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i className="mdi mdi-account-outline text-gray-400 text-lg">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
-                              <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
-                            </svg>
-                          </i>
+                  <form onSubmit={doRegister}>
+                    <div className="flex -mx-3">
+                      <div className="w-1/2 px-3 mb-5">
+                        <label className="text-xs font-semibold px-1">
+                          Nome da casa de acolhimento
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-account-outline text-gray-400 text-lg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-6 h-6"
+                              >
+                                <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                                <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+                              </svg>
+                            </i>
+                          </div>
+                          <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o nome da casa"
+                          />
                         </div>
-                        <input
-                          type="text"
-                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
-                          placeholder="Digite o nome da casa"
-                        />
+                      </div>
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Número de telefone
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-account-outline text-gray-400 text-lg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="w-5 h-5"
+                              >
+                                <path d="M3.5 2A1.5 1.5 0 002 3.5V5c0 1.149.15 2.263.43 3.326a13.022 13.022 0 009.244 9.244c1.063.28 2.177.43 3.326.43h1.5a1.5 1.5 0 001.5-1.5v-1.148a1.5 1.5 0 00-1.175-1.465l-3.223-.716a1.5 1.5 0 00-1.767 1.052l-.267.933c-.117.41-.555.643-.95.48a11.542 11.542 0 01-6.254-6.254c-.163-.395.07-.833.48-.95l.933-.267a1.5 1.5 0 001.052-1.767l-.716-3.223A1.5 1.5 0 004.648 2H3.5zM16.72 2.22a.75.75 0 111.06 1.06L14.56 6.5h2.69a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75v-4.5a.75.75 0 011.5 0v2.69l3.22-3.22z" />
+                              </svg>
+                            </i>
+                          </div>
+                          <input
+                            type="tel"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="+55 (xx) xxxx-xxxx"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="w-1/2 px-3 mb-5">
-                      <label htmlFor="" className="text-xs font-semibold px-1">
-                        Número de telefone
-                      </label>
-                      <div className="flex">
-                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i className="mdi mdi-account-outline text-gray-400 text-lg">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              className="w-5 h-5"
-                            >
-                              <path d="M3.5 2A1.5 1.5 0 002 3.5V5c0 1.149.15 2.263.43 3.326a13.022 13.022 0 009.244 9.244c1.063.28 2.177.43 3.326.43h1.5a1.5 1.5 0 001.5-1.5v-1.148a1.5 1.5 0 00-1.175-1.465l-3.223-.716a1.5 1.5 0 00-1.767 1.052l-.267.933c-.117.41-.555.643-.95.48a11.542 11.542 0 01-6.254-6.254c-.163-.395.07-.833.48-.95l.933-.267a1.5 1.5 0 001.052-1.767l-.716-3.223A1.5 1.5 0 004.648 2H3.5zM16.72 2.22a.75.75 0 111.06 1.06L14.56 6.5h2.69a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75v-4.5a.75.75 0 011.5 0v2.69l3.22-3.22z" />
-                            </svg>
-                          </i>
+                    <div className="flex -mx-3">
+                      <div className="w-full px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Descrição
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-description text-gray-400 text-lg" />
+                          </div>
+                          <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="w-full h-20 -ml-10 pl-10 pr-3 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300 resize-none"
+                            placeholder="Digite a descrição"
+                          />
                         </div>
-                        <input
-                          type="tel"
-                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
-                          placeholder="+55 (xx) xxxx-xxxx"
-                        />
                       </div>
                     </div>
-                  </div>
-                  <div className="flex -mx-3">
-                    <div className="w-full px-3 mb-5">
-                      <label htmlFor="" className="text-xs font-semibold px-1">
-                        Endereço completo e número
-                      </label>
-                      <div className="flex">
-                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i className="mdi mdi-email-outline text-gray-400 text-lg">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                              />
-                            </svg>
-                          </i>
+
+                    <div className="flex -mx-3">
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Rua
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-map-marker-outline text-gray-400 text-lg" />
+                          </div>
+                          <input
+                            type="text"
+                            value={street}
+                            onChange={(e) => setStreet(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o nome da rua"
+                          />
                         </div>
-                        <input
-                          type="text"
-                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
-                          placeholder="Digite o endereço e o número da casa"
-                        />
+                      </div>
+
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Número da casa
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-home-outline text-gray-400 text-lg" />
+                          </div>
+                          <input
+                            type="text"
+                            value={houseNumber}
+                            onChange={(e) => setHouseNumber(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o número da casa"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex -mx-3">
-                    <div className="w-full px-3 mb-5">
-                      <label htmlFor="" className="text-xs font-semibold px-1">
-                        E-mail
-                      </label>
-                      <div className="flex">
-                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i className="mdi mdi-email-outline text-gray-400 text-lg">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </i>
+
+                    <div className="flex -mx-3">
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Bairro
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-map-marker-multiple-outline text-gray-400 text-lg" />
+                          </div>
+                          <input
+                            type="text"
+                            value={neighborhood}
+                            onChange={(e) => setNeighborhood(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o nome do bairro"
+                          />
                         </div>
-                        <input
-                          type="email"
-                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
-                          placeholder="exemplo@email.com"
-                        />
+                      </div>
+
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Estado
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-map text-gray-400 text-lg" />
+                          </div>
+                          <input
+                            type="text"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o estado"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex -mx-3">
-                    <div className="w-full px-3 mb-12">
-                      <label htmlFor="" className="text-xs font-semibold px-1">
-                        Site ou rede social
-                      </label>
-                      <div className="flex">
-                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i className="mdi mdi-email-outline text-gray-400 text-lg">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5"
-                              />
-                            </svg>
-                          </i>
+
+                    <div className="flex -mx-3">
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Rede Social
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-social-instagram text-gray-400 text-lg" />
+                          </div>
+                          <input
+                            type="text"
+                            value={socialNetwork}
+                            onChange={(e) => setSocialNetwork(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="Digite o nome da rede social"
+                          />
                         </div>
-                        <input
-                          type="text"
-                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
-                          placeholder="www.exemplo.com.br"
-                        />
+                      </div>
+
+                      <div className="w-1/2 px-3 mb-5">
+                        <label
+                          htmlFor=""
+                          className="text-xs font-semibold px-1"
+                        >
+                          Site
+                        </label>
+                        <div className="flex">
+                          <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                            <i className="mdi mdi-email-outline text-gray-400 text-lg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5"
+                                />
+                              </svg>
+                            </i>
+                          </div>
+                          <input
+                            type="text"
+                            value={site}
+                            onChange={(e) => setSite(e.target.value)}
+                            className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-300"
+                            placeholder="www.exemplo.com.br"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex -mx-3">
-                    <div className="w-full px-3 mb-5">
-                      <button
-                        type="submit"
-                        className="block w-full max-w-xs mx-auto bg-fuchsia-500 hover:bg-fuchsia-600 focus:bg-fuchsia-600 hover:shadow-xl focus:shadow-xl text-white rounded-lg px-3 py-3 font-semibold"
-                      >
-                        Finalizar Cadastro
-                      </button>
+                    <div className="flex -mx-3">
+                      <div className="w-full px-3 mb-12">
+                        <button
+                          type="submit"
+                          className="block w-full max-w-xs mx-auto bg-fuchsia-500 hover:bg-fuchsia-600 focus:bg-fuchsia-600 hover:shadow-xl focus:shadow-xl text-white rounded-lg px-3 py-3 font-semibold"
+                        >
+                          Finalizar Cadastro
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <a
-                    href="/index"
-                    className="flex my-1 py-2 justify-center text-fuchsia-500 hover:text-fuchsia-600 font-semibold underline"
-                  >
-                    Voltar
-                  </a>
+
+                    <a
+                      href="/index"
+                      className="flex my-1 py-2 justify-center text-fuchsia-500 hover:text-fuchsia-600 font-semibold underline"
+                    >
+                      Voltar
+                    </a>
+                  </form>
                 </div>
               </div>
             </div>
