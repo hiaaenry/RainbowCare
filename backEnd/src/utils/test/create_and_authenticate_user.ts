@@ -9,6 +9,7 @@ export async function createAndAuthenticateUser(app: FastifyInstance) {
       last_name: "Name",
       email: "test.email@example.com",
       password: "test.password",
+      confirm_password: "test.password",
       role: "USER",
       interested_tags: ["JOB"],
     });
