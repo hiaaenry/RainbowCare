@@ -15,11 +15,25 @@ describe("Search Foster Home", async () => {
     await fosterHomeRepository.create({
       name: "Name Test Foster Home 1",
       description: "Description",
+      neighborhood: "neighborhood",
+      phone_number: "81988888888",
+      site: "www.site.com",
+      social_network: "@social_network",
+      state: "state",
+      street: "street",
+      house_number: "001",
     });
 
     await fosterHomeRepository.create({
       name: "Name Test Foster Home 2",
       description: "Description",
+      neighborhood: "neighborhood",
+      phone_number: "81988888888",
+      site: "www.site.com",
+      social_network: "@social_network",
+      state: "state",
+      street: "street",
+      house_number: "001",
     });
 
     const { fosterHomes } = await sut.execute({

@@ -20,6 +20,13 @@ describe("Create Foster Home Service", () => {
       name: "Foster Home Test Name",
       tags: ["JOB"],
       description: "description",
+      neighborhood: "neighborhood",
+      phone_number: "81988888888",
+      site: "www.site.com",
+      social_network: "@social_network",
+      state: "state",
+      street: "street",
+      house_number: "001",
     });
 
     expect(fosterHome.id).toEqual(expect.any(String));

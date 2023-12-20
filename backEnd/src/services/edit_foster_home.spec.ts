@@ -15,6 +15,13 @@ describe("Edit Foster Home", () => {
     const edit = await fosterHomeRepository.create({
       name: "Foster Home",
       description: "description",
+      neighborhood: "neighborhood",
+      phone_number: "81988888888",
+      site: "www.site.com",
+      social_network: "@social_network",
+      state: "state",
+      street: "street",
+      house_number: "001",
     });
 
     const { fosterHome } = await sut.execute({
